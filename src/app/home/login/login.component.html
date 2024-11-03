@@ -1,10 +1,22 @@
-<h1>Login</h1>
 <main login>
-  <form action="../../app.component.html" method="post">
-    <label for="email">Email</label>
-    <input type="email" name="email" id="email">
-    <label for="password">Senha</label>
-    <input type="password" name="senha" id="senha">
-    <input type="submit" value="Login">
+  <form [formGroup]="form" (ngSubmit)="login()">
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="email">
+      <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+        <small *ngIf="form.get('email')?.errors?.['required']">O email é obrigatório.</small>
+        <small *ngIf="form.get('email')?.errors?.['email']">Digite um email válido.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="senha">Senha:</label>
+      <input id="senha" formControlName="senha" type="password">
+      <div *ngIf="form.get('senha')?.invalid && form.get('senha')?.touched">
+        <small *ngIf="form.get('senha')?.errors?.['required']">A senha é obrigatória.</small>
+      </div>
+    </div>
+  
+    <button class="btn-primary" type="submit" [disabled]="form.invalid">Login</button>
   </form>
 </main>

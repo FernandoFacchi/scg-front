@@ -1,0 +1,9 @@
+[login] {
+  color: var(--dark-color);
+}
+
+[formulario] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
